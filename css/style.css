@@ -3,8 +3,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 :root {
   --main-color: #191c32;
-  --primary-color: aqua;
-  --secondary-color: #fff;
+  --primary-color: rgb(219, 53, 235);
+  --secondary-color: #f1e4e4;
 }
 
 /* Reset */
@@ -155,7 +155,7 @@ a {
 
   
   background: linear-gradient(rgba(29, 38, 113, 0.6), rgba(29, 38, 113, 0.6)),
-    url("../img/developer.webp");
+    url("../img/fondo.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
