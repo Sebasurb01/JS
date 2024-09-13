@@ -1,0 +1,136 @@
+/* animations.css */
+.rotate {
+    width: 100px;
+    height: 100px;
+    background: #ff1493;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border-radius: 10px;
+    animation: rotate-animation 2s infinite linear;
+}
+
+@keyframes rotate-animation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.bounce {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    background: #00ced1;
+    padding: 20px;
+    border-radius: 10px;
+    animation: bounce-animation 1s infinite;
+}
+
+@keyframes bounce-animation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+.fade-in {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: fade-in-animation 2s forwards;
+}
+
+@keyframes fade-in-animation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.typewriter {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden; /* Hide overflow text */
+    border-right: .15em solid #fff;
+    width: 100%; /* Ensure container is wide enough */
+    max-width: 90%; /* Adjust to fit content */
+    text-align: center;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #fff;
+    }
+}
+
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background: #222;
+    padding: 10px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-container h1 {
+    margin: 0;
+}
+
+.nav-container a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 10px;
+}
+
+.nav-container a.current {
+    border-bottom: 2px solid #fff;
+}
+
+.banner {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}

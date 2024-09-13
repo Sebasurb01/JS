@@ -1,4 +1,6 @@
 /* Variables */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 :root {
   --main-color: #191c32;
   --primary-color: aqua;
@@ -150,6 +152,8 @@ a {
   width: 100%;
   overflow: hidden;
   background: var(--main-color);
+
+  
   background: linear-gradient(rgba(29, 38, 113, 0.6), rgba(29, 38, 113, 0.6)),
     url("../img/developer.webp");
   background-repeat: no-repeat;
@@ -158,6 +162,7 @@ a {
 }
 
 img {
+  
   object-fit: cover;
 }
 
@@ -201,8 +206,12 @@ img {
 }
 
 .box img {
+  mask-image: linear-gradient(
+    black 80%
+    transparent
+  );
   width: 100%;
-  border: 2px solid var(--secondary-color);
+  border: 1px solid var(--secondary-color);
   border-radius: 20px;
 }
 
@@ -325,6 +334,7 @@ grid-gap:20px;
 }
 
 .single-project-img img {
+
   width: 100%;
   border: 2px solid var(--secondary-color);
   border-radius: 20px;
@@ -342,3 +352,7 @@ grid-gap:20px;
 .single-project-btn .next {
   float: right;
 }
+
+
+
+

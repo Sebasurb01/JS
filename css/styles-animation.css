@@ -1,0 +1,129 @@
+body {
+    background: #212121;
+}
+
+.image-gallery {
+    padding-top: 10vh;
+}
+
+.item {
+    display: grid;
+    place-items: center;
+    margin-bottom: 10vh;
+
+    --filter: drop-shadow(0 0 10px #000);
+}
+
+.item > img {
+    width: 80vh;
+    height: 80vh;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Animación para mover y desvanecer con hover */
+.item > img:hover {
+    filter: var(--filter) blur(0) saturate(1);
+    transform: rotateY(15deg);
+}
+
+@keyframes move-and-fade {
+    from,
+    to {
+        filter: var(--filter) blur(100px) saturate(20);
+    }
+
+    45%,
+    65% {
+        filter: var(--filter) blur(0) saturate(1);
+        transform: rotateY(0deg);
+    }
+}
+
+/* Soporte de @supports para animaciones basadas en timeline de vista */
+@supports (animation-timeline: view()) {
+    .item {
+        view-timeline-name: --img-timeline;
+        animation: move-and-fade both;
+        animation-timeline: view(y);
+        animation-range: cover 0% cover 120%;
+    }
+
+    .item > img {
+        view-timeline-name: --img-timeline;
+        animation-timeline: view(y);
+        animation-range: cover 0% cover 120%;
+    }
+}
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+:root {
+	--color1: #ff1493;
+	--color2: #ff4500;
+	--color3: #ffd700;
+	--color4: #00ced1;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Poppins", sans-serif;
+	background-color: #000;
+	color: #fff;
+	overflow-x: hidden;
+}
+
+.scroll-container {
+	height: 400vh;
+	background: linear-gradient(
+		var(--color1),
+		var(--color2),
+		var(--color3),
+		var(--color4)
+	);
+}
+
+.content {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: sticky;
+	top: 0;
+	font-size: 8vw;
+	text-transform: uppercase;
+	line-height: 1.1;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+@keyframes reveal-text {
+	to {
+		transform: scaleX(1);
+		transform-origin: right;
+	}
+}
+
+@keyframes hide-text {
+	to {
+		transform: scaleX(0);
+		transform-origin: left;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.reveal-text::before {
+		animation: reveal-text 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards,
+			hide-text 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+		animation-timeline: scroll(root);
+		animation-range: 0 100vh;
+	}
+}
