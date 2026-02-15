@@ -2,159 +2,83 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/style-responsive.css">
-
-<script src="https://cdn.tailwindcss.com"></script>
-
 <title>Contacto</title>
+
+<style>
+body{font-family:Arial;margin:0;padding:0}
+.container{display:flex;gap:20px;padding:20px}
+form{width:40%}
+input,textarea,button{width:100%;margin:10px 0;padding:10px}
+iframe{width:60%;height:400px;border:0}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<nav class="navbar">
-<div class="nav-container">
+<h2 style="text-align:center">Formulario contacto</h2>
 
-<h1 class="logo"><a href="index.html">J<span>S</span></a></h1>
+<div class="container">
 
-<ul id="main-nav">
-<li><a href="index.html">Portafolio</a></li>
-<li><a href="about.html">Acerca</a></li>
-<li><a class="current" href="contact.html">Contacto</a></li>
-</ul>
+<form id="cotizacionForm">
 
-</div>
-</nav>
+<input name="empresa" placeholder="Empresa" required>
+<input type="email" name="email" placeholder="Email" required>
+<textarea name="detalle" placeholder="Detalle" required></textarea>
 
-<section class="banner-header">
-<div class="banner-header-text">
-<h1>Página <span>Contacto</span></h1>
-<p>Hablemos de tu proyecto.</p>
-</div>
-</section>
-</header>
+<button type="submit" id="btnEnviar">Enviar</button>
 
-<main>
-
-<section class="section">
-
-<div class="card-info">
-
-<div>
-<i class="fas fa-map-marker-alt fa-2x"></i>
-<p>Popayán</p>
-</div>
-
-<div>
-<i class="fas fa-envelope fa-2x"></i>
-<p>sebassanxd@gmail.com</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<div class="form-map">
-
-<iframe
-src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d15944.81727632322!2d-76.62173382116924!3d2.438866384602031"
-width="600"
-height="450"
-style="border:0;"
-loading="lazy">
-</iframe>
-
-<div class="p-6 bg-slate-900 rounded w-full">
-
-<form id="cotizacionForm" class="space-y-4">
-
-<input name="empresa" placeholder="EMPRESA" required class="w-full p-3 bg-slate-800 text-white text-xs uppercase">
-
-<input name="email" type="email" placeholder="EMAIL" required class="w-full p-3 bg-slate-800 text-white text-xs uppercase">
-
-<textarea name="detalle" placeholder="DETALLE" required class="w-full h-32 p-3 bg-slate-800 text-white text-xs uppercase"></textarea>
-
-<button id="btnEnviar" type="submit" class="w-full bg-blue-600 text-white py-3 font-bold">
-Enviar
-</button>
-
-<p id="formMsg" class="hidden text-center text-xs font-bold"></p>
+<p id="formMsg"></p>
 
 </form>
 
-</div>
+<iframe
+src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d15944.81727632322!2d-76.62173382116924!3d2.438866384602031"
+loading="lazy">
+</iframe>
 
 </div>
-
-</section>
-
-</main>
-
-<footer class="main-footer">
-<p>Portafolio</p>
-</footer>
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function(){
+var form = document.getElementById("cotizacionForm");
+var msg = document.getElementById("formMsg");
+var btn = document.getElementById("btnEnviar");
 
-const form = document.getElementById("cotizacionForm");
-const msg = document.getElementById("formMsg");
-const btn = document.getElementById("btnEnviar");
+var WEBHOOK = "https://sebassan.app.n8n.cloud/webhook-test/SEBASSANDEV";
 
-const WEBHOOK = "https://sebassan.app.n8n.cloud/webhook-test/SEBASSANDEV";
-
-form.addEventListener("submit", function(e){
+form.onsubmit = function(e){
 
 e.preventDefault();
 
-btn.disabled = true;
-btn.innerText = "Enviando...";
+btn.disabled=true;
+btn.innerHTML="Enviando...";
 
 fetch(WEBHOOK,{
 method:"POST",
-headers:{ "Content-Type":"application/json"},
-body: JSON.stringify({
-empresa: form.empresa.value,
-email: form.email.value,
-detalle: form.detalle.value
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+empresa:form.empresa.value,
+email:form.email.value,
+detalle:form.detalle.value
 })
 })
 
-.then(()=>{
-
-msg.innerText="✔ Enviado correctamente";
-msg.classList.remove("hidden");
-
+.then(function(){
+msg.innerHTML="✔ enviado";
 form.reset();
-
 })
 
-.catch(()=>{
-
-msg.innerText="❌ Error al enviar";
-msg.classList.remove("hidden");
-
+.catch(function(){
+msg.innerHTML="❌ error";
 })
 
-.finally(()=>{
-
+.finally(function(){
 btn.disabled=false;
-btn.innerText="Enviar";
-
+btn.innerHTML="Enviar";
 });
 
-});
-
-});
+};
 
 </script>
 
